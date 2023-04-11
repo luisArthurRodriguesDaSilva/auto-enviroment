@@ -1,10 +1,10 @@
 from setuptools import setup
 
 setup(
-    name="teste",
+    name="get_file_by_github",
     entry_points={
         "console_scripts": [
-            "teste=teste.main:main",
+            "getFile=getFile.main:main",
         ],
     },
 )
