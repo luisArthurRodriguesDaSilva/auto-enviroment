@@ -1,1 +1,1 @@
-a = 'a'
+guiPy_png = 'guiPy'
