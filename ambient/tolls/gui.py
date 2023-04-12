@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 from hashlib import md5
 import os
 import sys
-import winsound as ws
+# import winsound as ws
 import threading
 
 global sair
@@ -16,8 +16,8 @@ def soundFunc(f):
         for i in range(1000):
             if sair:
                 break
-            acrecimo = 0 if i % 2 else f
-            ws.Beep(f + acrecimo, 500)
+            # acrecimo = 0 if i % 2 else f
+            # ws.Beep(f + acrecimo, 500)
 
     return auxF
 

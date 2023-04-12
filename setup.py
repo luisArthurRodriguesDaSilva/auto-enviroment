@@ -1,10 +1,8 @@
 from setuptools import setup
 
 setup(
-    name="get_file_by_github",
-    entry_points={
-        "console_scripts": [
-            "getFile=getFile.main:main",
-        ],
-    },
+    name="auto-ambient",
+    version='0.1',
+    packages=['ambient'],
+    zip_safe=False,
 )
