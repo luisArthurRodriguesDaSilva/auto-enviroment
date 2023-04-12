@@ -2,11 +2,38 @@ import PySimpleGUI as sg
 from hashlib import md5
 import os
 import sys
+
 # import winsound as ws
 import threading
 
 global sair
 sair = False
+
+brasil_dict = {
+    "cancel": "Cancelar",
+    "password": "senha",
+    "check": "verificar",
+    "start": "começar",
+    "continue": "continuar",
+    "stop": "parar",
+    "process": "processo",
+    "try again": "tentar novamente",
+    "type the path": "insira o endereço do arquivo",
+}
+
+
+def get_brasil_word(word):
+    return brasil_dict[word]
+
+
+def get_english_word(word):
+    return word.capitalize()
+
+
+def get_getter_lenguage(abrev):
+    if abrev == "pt":
+        return get_brasil_word
+    return get_english_word
 
 
 def soundFunc(f):
@@ -32,22 +59,22 @@ def stopSound():
 
 
 class Layouts:
-    def __init__(self):
+    def __init__(self, translated):
         self.password = [
             [
-                sg.Text("senha:"),
+                sg.Text(f'{translated("password")}:'),
                 sg.InputText(background_color="#ffffff"),
             ],
-            [sg.Button("verificar"), sg.Button("Cancelar")],
+            [sg.Button(translated("check")), sg.Button(translated("cancel"))],
         ]
 
         self.simple = lambda color, text: [sg.Text(text, background_color=color)]
 
         self.wrong = lambda text: [
             (self.simple(color="red", text=text)),
-            ([sg.Button("seguir processo")]),
-            ([sg.Button("parar processo")]),
-            ([sg.Button("tentar etapa novamente")]),
+            ([sg.Button(f'{translated("continue")} {translated("process")}')]),
+            ([sg.Button(f'{translated("stop")} {translated("process")}')]),
+            ([sg.Button(f'{translated("try again")}')]),
         ]
         self.ok = lambda text: [
             (self.simple(color="green", text=text)),
@@ -56,40 +83,44 @@ class Layouts:
 
         self.getPath = [
             [
-                sg.Text("insira o endereço do arquivo"),
+                sg.Text(f'{translated("type the path")}:'),
                 sg.InputText(background_color="#ffffff"),
                 sg.FileBrowse(
                     initial_folder=os.getcwd(), file_types=[("xmls Files", "*.xlsx")]
                 ),
             ],
-            [sg.Button("começar"), sg.Button("Cancelar")],
+            [sg.Button(translated("start")), sg.Button(translated("cancel"))],
         ]
 
 
 class Waiters:
-    def __init__(self):
+    def __init__(self, layouts, lenguage):
+        translated = get_getter_lenguage(lenguage)
         self.passwordStr = ""
         self.filePath = ""
+        self.translated = translated
+        self.layouts = layouts(translated)
+        self.translated = translated
 
     def password(self, title, correctHash):
-        window = sg.Window(title).Layout(layouts.password)
+        window = sg.Window(title).Layout(self.layouts.password)
         while True:
             event, values = window.read()
             self.passwordStr = values[0].replace('"', "")
             userPasswordmd5 = md5(self.passwordStr.encode()).hexdigest()
 
-            if event == sg.WIN_CLOSED or event == "Cancelar":
+            if event == sg.WIN_CLOSED or event == self.translated("cancel"):
                 window.close()
                 sys.exit()
             if (
-                event == "verificar" and userPasswordmd5 == correctHash
+                event == self.translated("check") and userPasswordmd5 == correctHash
             ):  # if user closes window or clicks cancel
                 window.close()
                 break
 
-    def ok(self, title, text="a senha está correta"):
+    def ok(self, title, text="its ok"):
         playSound(soundFunc(800))
-        window = sg.Window(title).Layout(layouts.ok(text=text))
+        window = sg.Window(title).Layout(self.layouts.ok(text=text))
         while True:
             event, values = window.read()
             if event == sg.WIN_CLOSED or event == "ok":
@@ -99,36 +130,35 @@ class Waiters:
 
     def wrong(self, text, title="erro"):
         playSound(soundFunc(500))
-        window = sg.Window(title).Layout(layouts.wrong(text=text))
+        window = sg.Window(title).Layout(self.layouts.wrong(text=text))
         while True:
             event, values = window.read()
-            if event == sg.WIN_CLOSED or event == "parar processo":
+            if (
+                event == sg.WIN_CLOSED
+                or event == f'{self.translated("stop")} {self.translated("process")}'
+            ):
                 stopSound()
                 window.close()
                 sys.exit()
-            if event == "seguir processo":
+            if event == f'{self.translated("continue")} {self.translated("process")}':
                 stopSound()
                 window.close()
                 return {"tryAgain": False}
-            if event == "tentar etapa novamente":
+            if event == self.translated("try again"):
                 stopSound()
                 window.close()
                 return {"tryAgain": True}
 
     def getPath(self, title="digite o caminho"):
-        window = sg.Window(title).Layout(layouts.getPath)
+        window = sg.Window(title).Layout(self.layouts.getPath)
         while True:
             event, values = window.read()
-            if event == sg.WIN_CLOSED or event == "Cancelar":
+            if event == sg.WIN_CLOSED or event == self.translated("cancel"):
                 window.close()
                 sys.exit()
-            if event == ("começar"):
+            if event == self.translated("start"):
                 path = values[0].replace('"', "")
                 break
 
         window.close()
         return path
-
-
-layouts = Layouts()
-gui = Waiters()
