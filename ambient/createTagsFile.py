@@ -19,11 +19,9 @@ def get_py_text_content(img_names):
 def main():
     resources_path = os.path.join(os.getcwd(), "resources")
     img_raw_names = os.listdir(resources_path)
-    print(img_raw_names)
     img_names = list(map(lambda x: "".join(x.split(".")[:-1]), img_raw_names))
-    print(img_names)
     tagsFile = os.path.join(os.getcwd(), "src/tags.py")
     file_content = get_py_text_content(img_names)
-
+    print(file_content)
     with open(tagsFile, "w") as tag:
         tag.write(file_content)
