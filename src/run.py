@@ -13,11 +13,5 @@ def run():
                 click,
                 clickIfPossible,
             ] = list(map(lambda x: cl.remove_self_nescessity(self, x), cl_functions))
-            click(tg.guiPy)
-            clickIfPossible(tg.init)
-            find(tg.gete_file, afterAction=lambda: print("achei"))
 
     Bot.main()
-
-
-run()
