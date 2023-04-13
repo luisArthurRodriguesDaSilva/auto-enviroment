@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="auto-ambient",
-    version="0.1",
+    version="0.2",
     packages=["ambient", "ambient.tolls"],
     zip_safe=False,
     entry_points={

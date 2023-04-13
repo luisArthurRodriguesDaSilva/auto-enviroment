@@ -10,4 +10,5 @@ def run():
 
     Bot.main()
 
-run('C:\\Users\\user\\Desktop\\guiPy.exe')
+
+run()
