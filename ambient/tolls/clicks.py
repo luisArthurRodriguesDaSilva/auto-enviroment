@@ -10,7 +10,7 @@ def doNothing(x=1, y=2):
     pass
 
 
-def buscar(
+def find(
     self,
     imgName,
     waiting_time=500,
@@ -25,24 +25,13 @@ def buscar(
         return True
     except Exception as e:
         if gui.wrong(text=e)["tryAgain"]:
-            return buscar(
+            return find(
                 self,
                 imgName,
                 waiting_time=waiting_time,
                 afterAction=afterAction,
                 notFoundAction=notFoundAction,
             )
-
-
-def click(self, btnName, error=False):
-    if error:
-        self.tab()
-    btn = btnName
-    try:
-        tryToClick(self, btn)
-    except Exception as e:
-        if gui.wrong(text=f"({btn})[{e}]")["tryAgain"]:
-            click(self, btnName, error=not error)
 
 
 def tryToClick(self, btnName):
@@ -56,11 +45,29 @@ def tryToClick(self, btnName):
         self.click()
 
 
+def click(self, btnName, error=False):
+    if error:
+        self.tab()
+    btn = btnName
+    try:
+        tryToClick(self, btn)
+    except Exception as e:
+        if gui.wrong(text=f"({btn})[{e}]")["tryAgain"]:
+            click(self, btnName, error=not error)
+
+
 def clickIfPossible(self, btn):
-    buscar(
+    find(
         self,
         btn,
         waiting_time=1000,
         afterAction=lambda: click(self, btn),
         notFoundAction=lambda imgName: print(imgName, "não achado mas segue o fluxo"),
     )
+
+
+def remove_self_nescessity(self, func):
+    def wrapper(*args, **kwargs):
+        return func(self, *args, **kwargs)
+
+    return wrapper
