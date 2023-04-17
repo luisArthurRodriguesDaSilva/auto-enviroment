@@ -13,5 +13,5 @@ def run():
                 click,
                 clickIfPossible,
             ] = list(map(lambda x: cl.remove_self_nescessity(self, x), cl_functions))
-
+            click(tg.lic)
     Bot.main()

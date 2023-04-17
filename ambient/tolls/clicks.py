@@ -1,6 +1,8 @@
 from . import gui
 import pyautogui
 
+gui = gui.gui
+
 
 def alertImageNotFound(imgName):
     raise Exception(f"{imgName} não foi encontrado")

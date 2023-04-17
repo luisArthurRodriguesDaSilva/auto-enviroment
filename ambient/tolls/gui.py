@@ -94,7 +94,7 @@ class Layouts:
 
 
 class Waiters:
-    def __init__(self, layouts, lenguage):
+    def __init__(self, lenguage, layouts=Layouts):
         translated = get_getter_lenguage(lenguage)
         self.passwordStr = ""
         self.filePath = ""
@@ -162,3 +162,6 @@ class Waiters:
 
         window.close()
         return path
+
+
+gui = Waiters("pt")
