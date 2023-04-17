@@ -8,7 +8,9 @@ main_model = mainModel.main_model
 
 def main():
     current_path = os.getcwd()
-    dir_paths = list(map(lambda x: os.path.join(current_path, x), ["src", "resources"]))
+    dir_paths = list(
+        map(lambda x: os.path.join(current_path, x), ["src", "resources", "logs"])
+    )
 
     for path in dir_paths:
         isExist = os.path.exists(path)
