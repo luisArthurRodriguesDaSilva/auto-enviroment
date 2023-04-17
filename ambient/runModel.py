@@ -1,4 +1,4 @@
-from botcity.core import DesktopBot
+run_model = """from botcity.core import DesktopBot
 import tags as tg
 import ambient.tolls.clicks as cl
 
@@ -15,3 +15,4 @@ def run():
             ] = list(map(lambda x: cl.remove_self_nescessity(self, x), cl_functions))
 
     Bot.main()
+"""

@@ -9,6 +9,7 @@ setup(
         "console_scripts": [
             "getFile=ambient.getFile:main",
             "createTagsFile=ambient.createTagsFile:main",
+            "createAmbient=ambient.createAutoAmbient:main",
         ],
     },
 )

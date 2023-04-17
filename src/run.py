@@ -15,3 +15,4 @@ def run():
             ] = list(map(lambda x: cl.remove_self_nescessity(self, x), cl_functions))
 
     Bot.main()
+    
