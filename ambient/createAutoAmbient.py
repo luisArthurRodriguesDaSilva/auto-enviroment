@@ -17,5 +17,9 @@ def main():
             print(f"{path} is created")
 
     for model in [(main_model, "main.py"), (run_model, "run.py")]:
-        with open(os.path.join(dir_paths[0], model[1]), "w") as run:
-            run.write(model[0])
+        path = os.path.join(dir_paths[0], model[1])
+        if os.path.exists(path):
+            print(f"{path} is already exist")
+        else:
+            with open(path, "w") as run:
+                run.write(model[0])
