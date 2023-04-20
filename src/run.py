@@ -8,10 +8,12 @@ cl_functions = [cl.find, cl.click, cl.clickIfPossible]
 def run():
     class Bot(DesktopBot):
         def action(self, execution=None):
-            [
-                find,
-                click,
-                clickIfPossible,
-            ] = list(map(lambda x: cl.remove_self_nescessity(self, x), cl_functions))
+            find = cl.remove_self_necessity(self, cl.find)
+            click = cl.remove_self_necessity(self, cl.click)
+            clickIfPossible = cl.remove_self_necessity(self, cl.clickIfPossible)
+
+            find(tg.lic, afterAction=lambda: print("its here"))
             click(tg.lic)
+            clickIfPossible(tg.lic)
+
     Bot.main()
