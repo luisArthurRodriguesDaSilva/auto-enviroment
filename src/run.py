@@ -11,9 +11,6 @@ def run():
             find = cl.remove_self_necessity(self, cl.find)
             click = cl.remove_self_necessity(self, cl.click)
             clickIfPossible = cl.remove_self_necessity(self, cl.clickIfPossible)
-
-            find(tg.lic, afterAction=lambda: print("its here"))
-            click(tg.lic)
-            clickIfPossible(tg.lic)
+            nf = [find, click, clickIfPossible]
 
     Bot.main()
