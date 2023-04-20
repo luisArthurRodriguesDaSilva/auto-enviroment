@@ -1,5 +1,6 @@
 from . import gui
 import pyautogui
+from typing import Callable, Self, Optional
 
 gui = gui.gui
 
@@ -13,11 +14,11 @@ def doNothing(x=1, y=2):
 
 
 def find(
-    self,
-    imgName,
-    waiting_time=500,
-    afterAction=lambda: pyautogui.press("enter"),
-    notFoundAction=alertImageNotFound,
+    self: Self,
+    imgName: str,
+    waiting_time: int = 500,
+    afterAction: Callable = lambda: pyautogui.press("enter"),
+    notFoundAction: Callable[[str]] = alertImageNotFound,
 ):
     try:
         if not self.find(imgName, matching=0.93, waiting_time=waiting_time):
@@ -36,10 +37,10 @@ def find(
             )
 
 
-def tryToClick(self, btnName):
-    if not self.find(btnName, matching=0.93, waiting_time=2000):
+def tryToClick(self: Self, btnName: str, waiting_time: int = 2000):
+    if not self.find(btnName, matching=0.93, waiting_time=waiting_time):
         try:
-            self.find(f"{btnName}_r", matching=0.93, waiting_time=2000)
+            self.find(f"{btnName}_r", matching=0.93, waiting_time=waiting_time)
             self.click()
         except Exception:
             raise Exception(f'o botão "{btnName}" não foi encontrado')
@@ -47,18 +48,18 @@ def tryToClick(self, btnName):
         self.click()
 
 
-def click(self, btnName, error=False):
+def click(self: Self, btnName: str, waiting_time: int = 2000, error=False):
     if error:
         self.tab()
     btn = btnName
     try:
-        tryToClick(self, btn)
+        tryToClick(self, btn, waiting_time=waiting_time)
     except Exception as e:
         if gui.wrong(text=f"({btn})[{e}]")["tryAgain"]:
-            click(self, btnName, error=not error)
+            click(self, btnName, waiting_time=waiting_time, error=not error)
 
 
-def clickIfPossible(self, btn):
+def clickIfPossible(self, btn: str):
     find(
         self,
         btn,
@@ -68,7 +69,20 @@ def clickIfPossible(self, btn):
     )
 
 
-def remove_self_nescessity(self, func):
+def remove_self_nescessity(
+    self,
+    func: Callable[
+        [
+            Self,
+            str,
+            Optional[int],
+            Optional[Callable],
+            Optional[Callable[[str]]],
+        ]
+    ],
+) -> Callable[[str, int, Optional[int], Optional[Callable], Optional[Callable[[str]]]]]:
+    """the firsth argument, always is the name of image"""
+
     def wrapper(*args, **kwargs):
         return func(self, *args, **kwargs)
 
