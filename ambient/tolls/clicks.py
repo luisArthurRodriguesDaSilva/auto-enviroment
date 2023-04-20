@@ -1,8 +1,11 @@
 from . import gui
 import pyautogui
-from typing import Callable, Self, Optional
+from typing import Callable, Self, TypeVar
 
 gui = gui.gui
+
+
+C = TypeVar("C")
 
 
 def alertImageNotFound(imgName):
@@ -18,7 +21,7 @@ def find(
     imgName: str,
     waiting_time: int = 500,
     afterAction: Callable = lambda: pyautogui.press("enter"),
-    notFoundAction: Callable[[str]] = alertImageNotFound,
+    notFoundAction: alertImageNotFound = alertImageNotFound,
 ):
     try:
         if not self.find(imgName, matching=0.93, waiting_time=waiting_time):
@@ -69,20 +72,10 @@ def clickIfPossible(self, btn: str):
     )
 
 
-def remove_self_nescessity(
-    self,
-    func: Callable[
-        [
-            Self,
-            str,
-            Optional[int],
-            Optional[Callable],
-            Optional[Callable[[str]]],
-        ]
-    ],
-) -> Callable[[str, int, Optional[int], Optional[Callable], Optional[Callable[[str]]]]]:
-    """the firsth argument, always is the name of image"""
-
+def remove_self_necessity(
+    self: Self,
+    func: C,
+) -> C:
     def wrapper(*args, **kwargs):
         return func(self, *args, **kwargs)
 
