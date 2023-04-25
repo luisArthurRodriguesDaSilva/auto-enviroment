@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name="auto-ambient",
     version="0.3",
-    packages=["ambient", "ambient.tolls"],
+    packages=["ambient", "ambient.tolls", "ambient.models"],
     zip_safe=False,
     entry_points={
         "console_scripts": [

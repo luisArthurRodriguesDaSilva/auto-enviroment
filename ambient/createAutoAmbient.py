@@ -1,7 +1,7 @@
 import os
-from . import runModel
-from . import mainModel
-from . import blocksModel
+from .models import runModel
+from .models import mainModel
+from .models import blocksModel
 
 run_model = runModel.run_model
 main_model = mainModel.main_model
