@@ -7,9 +7,7 @@ from ambient.tolls.utils import remove_self_necessity, take_click_types
 def run():
     class Bot(DesktopBot):
         def action(self, execution=None):
-            nf = take_click_types(
-                tuple([remove_self_necessity(self, f) for f in cl.click_functions])
-            )
+            nf = take_click_types([remove_self_necessity(self, f) for f in cl.click_functions])
             find, click, clickIfPossible = nf
 
     Bot.main()

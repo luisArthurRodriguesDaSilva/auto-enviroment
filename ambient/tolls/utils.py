@@ -37,7 +37,7 @@ def take_click_types(thing):
 
     TIPO_CERTO = (cl.find, cl.click, cl.clickIfPossible)
 
-    def take_type(thing, type: S) -> S:
-        return thing
+    def take_type(nf, type: S) -> S:
+        return nf
 
-    return take_type(thing, TIPO_CERTO)
+    return take_type(tuple(thing), TIPO_CERTO)
