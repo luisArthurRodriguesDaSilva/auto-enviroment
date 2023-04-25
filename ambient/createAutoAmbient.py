@@ -1,9 +1,11 @@
 import os
 from . import runModel
 from . import mainModel
+from . import blocksModel
 
 run_model = runModel.run_model
 main_model = mainModel.main_model
+block_model = blocksModel.blocks_model
 
 
 def main():
@@ -18,7 +20,12 @@ def main():
             os.makedirs(path)
             print(f"{path} is created")
 
-    for model in [(main_model, "main.py"), (run_model, "run.py")]:
+    for model in [
+        ("", "tags.py"),
+        (main_model, "main.py"),
+        (run_model, "run.py"),
+        (block_model, "blocks.py"),
+    ]:
         path = os.path.join(dir_paths[0], model[1])
         if os.path.exists(path):
             print(f"{path} is already exist")
