@@ -2,7 +2,7 @@ import os
 
 
 def format_filename(filename):
-    wrong_chars = [" ", ":", "/", "."]
+    wrong_chars = [" ", ":", "/", ".", "-", "(", ")", "!", "?"]
     name = filename
     for wrong_char in wrong_chars:
         name = name.replace(wrong_char, "_")
