@@ -1,11 +1,8 @@
 from . import gui
 import pyautogui
-from typing import Callable, Self, TypeVar
+from typing import Callable, Self
 
 gui = gui.gui
-
-
-C = TypeVar("C")
 
 
 def alertImageNotFound(imgName):
@@ -70,24 +67,3 @@ def clickIfPossible(self, btn: str):
         afterAction=lambda: click(self, btn),
         notFoundAction=lambda imgName: print(imgName, "não achado mas segue o fluxo"),
     )
-
-
-def remove_self_necessity(
-    self: Self,
-    func: C,
-) -> C:
-    def wrapper(*args, **kwargs):
-        return func(self, *args, **kwargs)
-
-    return wrapper
-
-
-def with_types(thing):
-    S = TypeVar("S")
-
-    TIPO_CERTO = (find, click, clickIfPossible)
-
-    def take_type(thing, type: S) -> S:
-        return thing
-
-    return take_type(thing, TIPO_CERTO)

@@ -1,4 +1,6 @@
 import logging
+from . import clicks as cl
+from typing import Self, TypeVar
 
 
 def notify(text):
@@ -15,3 +17,27 @@ def notify(text):
     )
     print(text)
     logging.info(text)
+
+
+C = TypeVar("C")
+
+
+def remove_self_necessity(
+    self: Self,
+    func: C,
+) -> C:
+    def wrapper(*args, **kwargs):
+        return func(self, *args, **kwargs)
+
+    return wrapper
+
+
+def take_click_types(thing):
+    S = TypeVar("S")
+
+    TIPO_CERTO = (cl.find, cl.click, cl.clickIfPossible)
+
+    def take_type(thing, type: S) -> S:
+        return thing
+
+    return take_type(thing, TIPO_CERTO)
