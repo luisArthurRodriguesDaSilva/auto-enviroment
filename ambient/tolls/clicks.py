@@ -80,3 +80,14 @@ def remove_self_necessity(
         return func(self, *args, **kwargs)
 
     return wrapper
+
+
+def with_types(thing):
+    S = TypeVar("S")
+
+    TIPO_CERTO = (find, click, clickIfPossible)
+
+    def take_type(thing, type: S) -> S:
+        return thing
+
+    return take_type(thing, TIPO_CERTO)
