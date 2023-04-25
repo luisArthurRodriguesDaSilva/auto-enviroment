@@ -67,3 +67,6 @@ def clickIfPossible(self, btn: str):
         afterAction=lambda: click(self, btn),
         notFoundAction=lambda imgName: print(imgName, "não achado mas segue o fluxo"),
     )
+
+
+click_functions = find, click, clickIfPossible
