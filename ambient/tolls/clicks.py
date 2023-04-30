@@ -1,6 +1,6 @@
 from . import gui
 import pyautogui
-from typing import Callable, Self
+from typing import Callable
 
 gui = gui.gui
 
@@ -14,7 +14,7 @@ def doNothing(x=1, y=2):
 
 
 def find(
-    self: Self,
+    self,
     imgName: str,
     waiting_time: int = 500,
     afterAction: Callable = lambda: pyautogui.press("enter"),
@@ -37,7 +37,7 @@ def find(
             )
 
 
-def tryToClick(self: Self, btnName: str, waiting_time: int = 2000):
+def tryToClick(self, btnName: str, waiting_time: int = 2000):
     if not self.find(btnName, matching=0.93, waiting_time=waiting_time):
         try:
             self.find(f"{btnName}_r", matching=0.93, waiting_time=waiting_time)
@@ -48,7 +48,7 @@ def tryToClick(self: Self, btnName: str, waiting_time: int = 2000):
         self.click()
 
 
-def click(self: Self, btnName: str, waiting_time: int = 2000, error=False):
+def click(self, btnName: str, waiting_time: int = 2000, error=False):
     if error:
         self.tab()
     btn = btnName
