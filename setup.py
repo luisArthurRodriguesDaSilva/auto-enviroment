@@ -1,10 +1,19 @@
 from setuptools import setup
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(
-    name="auto-ambient",
-    version="0.3",
+    name="autoAmbient",
+    version="0.3.1",
+    author="Luis Arthur Rodrigues da Silva",
+    author_email="luisarthurlards03@gmail.com",
     packages=["ambient", "ambient.tolls", "ambient.models"],
-    zip_safe=False,
+
+    url="https://github.com/luisArthurRodriguesDaSilva/automations-enviroment",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    python_requires='>=3.8',
     entry_points={
         "console_scripts": [
             "getFile=ambient.getFile:main",
