@@ -51,6 +51,8 @@ Depois disso é só executar o main.py e ver a mágica acontecer
 
 O auto-enviroment conta com diversas maneiras de corrigir erros como as GUIs para quando a respectiva imagem não for encontrada
 
+![Captura de tela de 2023-05-23 22-57-20](https://github.com/luisArthurRodriguesDaSilva/auto-enviroment/assets/66787949/76c89f66-bcfa-432e-83c6-85bb2e56d766)
+
 ## Contribuindo
 
 Se você quiser contribuir com a biblioteca AutoAmbient, você deve seguir as seguintes etapas:
