@@ -9,11 +9,10 @@ setup(
     author="Luis Arthur Rodrigues da Silva",
     author_email="luisarthurlards03@gmail.com",
     packages=["ambient", "ambient.tolls", "ambient.models"],
-
     url="https://github.com/luisArthurRodriguesDaSilva/automations-enviroment",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    python_requires='>=3.8',
+    python_requires=">=3.8",
     entry_points={
         "console_scripts": [
             "getFile=ambient.getFile:main",
@@ -23,8 +22,9 @@ setup(
     },
     install_requires=[
         "PySimpleGUI==4.20.0",
-        "botcity==1.8.1",
-        "requests>=2.25.1"
+        "botcity-framework-core>=0.3.0",
+        "botcity-maestro-sdk>=0.1.5",
+        "requests>=2.25.1",
     ],
-    license='MIT',
+    license="MIT",
 )
