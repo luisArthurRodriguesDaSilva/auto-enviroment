@@ -21,4 +21,10 @@ setup(
             "createAmbient=ambient.createAutoAmbient:main",
         ],
     },
+    install_requires=[
+        "PySimpleGUI==4.20.0",
+        "botcity==1.8.1",
+        "requests>=2.25.1"
+    ],
+    license='MIT',
 )

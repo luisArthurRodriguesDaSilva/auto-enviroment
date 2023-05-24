@@ -1,6 +1,6 @@
 import logging
 from . import clicks as cl
-from typing import Self, TypeVar
+from typing import TypeVar
 
 
 def notify(text):
@@ -23,7 +23,7 @@ C = TypeVar("C")
 
 
 def remove_self_necessity(
-    self: Self,
+    self,
     func: C,
 ) -> C:
     def wrapper(*args, **kwargs):
