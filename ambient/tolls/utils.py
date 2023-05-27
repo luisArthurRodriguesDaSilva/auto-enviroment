@@ -47,3 +47,8 @@ def getClickFunctions(self):
     return take_click_types(
         [remove_self_necessity(self, f) for f in cl.click_functions]
     )
+
+
+class Nf:
+    def __init__(self, Self):
+        self.find, self.click, self.clickIfPossible, self.awaitItGoOut = getClickFunctions(Self)
