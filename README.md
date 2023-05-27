@@ -66,6 +66,8 @@ O auto-enviroment conta com diversas maneiras de corrigir erros como as GUIs par
 
 Mais algumas dessas interfaces podem ser usadas importando `from ambient.tolls.gui import gui` como no exemplo a seguir.
 
+![Captura de tela de 2023-05-27 20-16-07](https://github.com/luisArthurRodriguesDaSilva/auto-enviroment/assets/66787949/af61e074-ccc1-410a-a287-065dcbb7d609)
+
 ## Contribuindo
 
 Se você quiser contribuir com a biblioteca AutoAmbient, você deve seguir as seguintes etapas:
