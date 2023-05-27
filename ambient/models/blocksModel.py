@@ -1,6 +1,7 @@
-blocks_model = """from ambient.tolls.utils import take_click_types
+blocks_model = """from ambient.tolls.utils import Nf
+import tags as tg  # noqa: E261, F401
 
 
-def firsth_block(self, nf) -> None:
-    find, click, clickIfPossible = take_click_types(nf)
+def firsth_block(self, nf: Nf) -> None:
+    pass
 """
