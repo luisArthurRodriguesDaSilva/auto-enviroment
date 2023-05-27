@@ -8,7 +8,6 @@ def run():
     class Bot(DesktopBot):
         def action(self, execution=None):
             nf = Nf(self)
-            nf.awaitItGoOut(tg.thunderClient)
             bls.firsth_block(self, nf)
 
     Bot.main()

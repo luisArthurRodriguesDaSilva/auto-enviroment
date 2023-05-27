@@ -28,30 +28,47 @@ createTagsFile
 Após a criação da referencia à imagem no arquivo de tags você deve escrever o seu fluxo em run.py como no exemplo a seguir:
 
 ```python
-from ambient.tolls.utils import take_click_types
-import tags as tg  # tags é um arquivo que contém referências a todas as imagens
-import ambient.tolls.clicks as cl
-from ambient.tolls.utils import remove_self_necessity
+from botcity.core import DesktopBot
+import tags as tg  # noqa: E261, F401
+import blocks as bls
+from ambient.tolls.utils import Nf
 
 
 def run():
     class Bot(DesktopBot):
         def action(self, execution=None):
-            nf = take_click_types(
-                tuple([remove_self_necessity(self, f) for f in cl.click_functions])
-            )
-            find, click, clickIfPossible = nf
-
+            nf = Nf(self)
             click(tg.btn_name) #o lugar que você que clicar
 
     Bot.main()
+
 ```
 
 Depois disso é só executar o main.py e ver a mágica acontecer
 
-O auto-enviroment conta com diversas maneiras de corrigir erros como as GUIs para quando a respectiva imagem não for encontrada
+## Funções
+
+As quatro funções disponíveis no arquivo `automations-enviroment/src/run.py` que são fornecidas pela classe `Nf` do módulo `ambient.tolls.utils` têm as seguintes funcionalidades:
+
+- `click(imgName, waiting_time)`: essa função faz um clique esquerdo do mouse na imagem com o nome fornecido.
+
+- `clickIfPossible(imgName, waiting_time)`: realiza a mesma operação do click, mas apenas se for possível, caso contrário, ele será ignorado e não emitira mensagem de erro.
+
+- `awaitItGoOut(imgName, waiting_time)`: essa função aguarda até que a imagem passada como parâmetro desapareça da tela.
+
+- `find(imgName, waiting_time, afterAction, notFoundAction)`: essa função busca pela imagem passada como parâmetro ,caso seja encontrado, executa o afterAction e, caso não, o notFoundAction.
+
+Essas funções utilizam técnicas de visão computacional para buscarem e interagirem com elementos visuais na tela, tornando-as úteis para automatizar a interação com interfaces gráficas de usuário.
+
+## Mensagens de erro
+
+O auto-enviroment conta com diversas maneiras de corrigir erros como as GUIs para quando a respectiva imagem não for encontrada.
 
 ![Captura de tela de 2023-05-23 22-57-20](https://github.com/luisArthurRodriguesDaSilva/auto-enviroment/assets/66787949/76c89f66-bcfa-432e-83c6-85bb2e56d766)
+
+Mais algumas dessas interfaces podem ser usadas importando `from ambient.tolls.gui import gui` como no exemplo a seguir.
+
+
 
 ## Contribuindo
 
