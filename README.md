@@ -38,7 +38,7 @@ def run():
     class Bot(DesktopBot):
         def action(self, execution=None):
             nf = Nf(self)
-            click(tg.btn_name) #o lugar que você que clicar
+            nf.click(tg.btn_name) #o lugar que você que clicar
 
     Bot.main()
 
