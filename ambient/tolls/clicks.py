@@ -1,5 +1,6 @@
 from . import gui
 import pyautogui
+import time
 from typing import Callable
 
 gui = gui.gui
@@ -69,4 +70,12 @@ def clickIfPossible(self, btn: str):
     )
 
 
-click_functions = find, click, clickIfPossible
+def awaitItGoOut(self, imgName):
+    while 1:
+        print(f"esperando {imgName} sumir")
+        time.sleep(1)
+        if not self.find(imgName, matching=0.93, waiting_time=50):
+            break
+
+
+click_functions = find, click, clickIfPossible, awaitItGoOut

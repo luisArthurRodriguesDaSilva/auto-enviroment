@@ -35,9 +35,15 @@ def remove_self_necessity(
 def take_click_types(thing):
     S = TypeVar("S")
 
-    TIPO_CERTO = (cl.find, cl.click, cl.clickIfPossible)
+    TIPO_CERTO = (cl.find, cl.click, cl.clickIfPossible, cl.awaitItGoOut)
 
     def take_type(nf, type: S) -> S:
         return nf
 
     return take_type(tuple(thing), TIPO_CERTO)
+
+
+def getClickFunctions(self):
+    return take_click_types(
+        [remove_self_necessity(self, f) for f in cl.click_functions]
+    )
