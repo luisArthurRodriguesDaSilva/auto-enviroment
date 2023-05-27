@@ -58,8 +58,6 @@ As quatro funções disponíveis no arquivo `automations-enviroment/src/run.py` 
 
 - `find(imgName, waiting_time, afterAction, notFoundAction)`: essa função busca pela imagem passada como parâmetro ,caso seja encontrado, executa o afterAction e, caso não, o notFoundAction.
 
-Essas funções utilizam técnicas de visão computacional para buscarem e interagirem com elementos visuais na tela, tornando-as úteis para automatizar a interação com interfaces gráficas de usuário.
-
 ## Mensagens de erro
 
 O auto-enviroment conta com diversas maneiras de corrigir erros como as GUIs para quando a respectiva imagem não for encontrada.
