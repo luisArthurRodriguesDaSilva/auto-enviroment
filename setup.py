@@ -22,7 +22,7 @@ setup(
     },
     install_requires=[
         "PySimpleGUI==4.20.0",
-        "botcity-framework-core>=0.3.0",
+        "botcity-framework-core==0.4.0",
         "botcity-maestro-sdk>=0.1.5",
         "requests>=2.25.1",
     ],

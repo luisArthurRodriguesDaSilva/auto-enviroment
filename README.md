@@ -38,7 +38,7 @@ def run():
     class Bot(DesktopBot):
         def action(self, execution=None):
             nf = Nf(self)
-            click(tg.btn_name) #o lugar que você que clicar
+            nf.click(tg.btn_name) #o lugar que você que clicar
 
     Bot.main()
 
@@ -65,6 +65,8 @@ O auto-enviroment conta com diversas maneiras de corrigir erros como as GUIs par
 ![Captura de tela de 2023-05-23 22-57-20](https://github.com/luisArthurRodriguesDaSilva/auto-enviroment/assets/66787949/76c89f66-bcfa-432e-83c6-85bb2e56d766)
 
 Mais algumas dessas interfaces podem ser usadas importando `from ambient.tolls.gui import gui` como no exemplo a seguir.
+
+![Captura de tela de 2023-05-27 20-16-07](https://github.com/luisArthurRodriguesDaSilva/auto-enviroment/assets/66787949/af61e074-ccc1-410a-a287-065dcbb7d609)
 
 ## Contribuindo
 
