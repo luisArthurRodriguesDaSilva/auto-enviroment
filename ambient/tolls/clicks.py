@@ -70,10 +70,10 @@ def clickIfPossible(self, btn: str):
     )
 
 
-def awaitItGoOut(self, imgName):
+def awaitItGoOut(self, imgName, interval=1000):
     while 1:
         print(f"esperando {imgName} sumir")
-        time.sleep(1)
+        time.sleep(interval / 1000)
         if not self.find(imgName, matching=0.93, waiting_time=50):
             break
 

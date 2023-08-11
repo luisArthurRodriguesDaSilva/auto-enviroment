@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="autoAmbient",
-    version="0.4.0",
+    version="0.4.2",
     author="Luis Arthur Rodrigues da Silva",
     author_email="luisarthurlards03@gmail.com",
     packages=["ambient", "ambient.tolls", "ambient.models"],

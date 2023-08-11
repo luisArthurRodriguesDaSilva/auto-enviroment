@@ -9,5 +9,4 @@ def run():
         def action(self, execution=None):
             nf = Nf(self)
             bls.firsth_block(self, nf)
-
     Bot.main()
