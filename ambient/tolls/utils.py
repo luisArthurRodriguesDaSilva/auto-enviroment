@@ -1,10 +1,10 @@
 import logging
 from . import clicks as cl
 from typing import TypeVar
+import threading
 
 
 def notify(text):
-
     logging.basicConfig(
         handlers=[
             logging.FileHandler(
@@ -51,4 +51,30 @@ def getClickFunctions(self):
 
 class Nf:
     def __init__(self, Self):
-        self.find, self.click, self.clickIfPossible, self.awaitItGoOut = getClickFunctions(Self)
+        (
+            self.find,
+            self.click,
+            self.clickIfPossible,
+            self.awaitItGoOut,
+        ) = getClickFunctions(Self)
+
+
+S = TypeVar("S")
+
+
+def take_type(f: S) -> S:
+    return f
+
+
+def block(self, nf: Nf) -> None:
+    pass
+
+
+blockType = take_type(block)
+
+
+def fly(self, nf: Nf, block: blockType):
+    def wrap():
+        block(self, nf)
+
+    threading.Thread(target=wrap).start()
