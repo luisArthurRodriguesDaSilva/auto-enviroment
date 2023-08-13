@@ -50,13 +50,10 @@ def tryToClick(self, btnName: str, waiting_time: int = 2000):
 
 
 def click(self, btnName: str, waiting_time: int = 2000, error=False):
-    if error:
-        self.tab()
-    btn = btnName
     try:
-        tryToClick(self, btn, waiting_time=waiting_time)
+        tryToClick(self, btnName, waiting_time=waiting_time)
     except Exception as e:
-        if gui.wrong(text=f"({btn})[{e}]")["tryAgain"]:
+        if gui.wrong(text=f"({btnName})[{e}]")["tryAgain"]:
             click(self, btnName, waiting_time=waiting_time, error=not error)
 
 
