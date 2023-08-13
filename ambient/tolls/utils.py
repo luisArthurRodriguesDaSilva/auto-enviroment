@@ -66,15 +66,23 @@ def take_type(f: S) -> S:
     return f
 
 
-def block(self, nf: Nf) -> None:
-    pass
-
-
-blockType = take_type(block)
-
-
-def fly(self, nf: Nf, block: blockType):
+def fly(self, nf: Nf, block):
     def wrap():
         block(self, nf)
 
     threading.Thread(target=wrap).start()
+
+
+def wrap(img, turns):
+    def f(self, nf: Nf):
+        i = 0
+        while i < 10:
+            nf.clickIfPossible(img)
+            print(f"turn {i}")
+            i += 1
+
+    return f
+
+
+def watch(self, nf: Nf, img, turns=10):
+    fly(self, nf, wrap(img, turns))

@@ -1,2 +1,1 @@
-host = 'host'
-thunderClient = 'thunderClient'
+githubFollow = 'githubFollow'
